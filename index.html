@@ -150,7 +150,15 @@
         function showPage(pageId) {
             document.getElementById('home-page').classList.toggle('hidden', pageId !== 'home');
             document.getElementById('privacy-page').classList.toggle('hidden', pageId !== 'privacy');
-            if (pageId === 'privacy') loadPrivacyPolicy();
+
+            if (pageId === 'privacy') {
+                loadPrivacyPolicy();
+                // Update the URL bar so the user can copy the direct link
+                window.history.pushState(null, null, '#privacy');
+            } else {
+                // Clear the hash when going back to home
+                window.history.pushState(null, null, ' ');
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -164,6 +172,16 @@
                 container.innerHTML = `<p class="text-red-400">Error: Please ensure privacy-policy.md is in the same folder.</p>`;
             }
         }
+
+        // --- NEW: Run this automatically when the page loads ---
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check if the URL already has #privacy in it
+            if (window.location.hash === '#privacy') {
+                showPage('privacy');
+            } else {
+                showPage('home');
+            }
+        });
     </script>
 </body>
 
