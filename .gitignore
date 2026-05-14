@@ -1,0 +1,28 @@
+# --- System Files ---
+.DS_Store
+Thumbs.db
+*.swp
+*.log
+
+# --- IDE & Editor Settings ---
+# These are local to your machine and shouldn't be shared
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# --- Chrome Extension Specifics ---
+# Never share your private key if you're signing the extension locally
+*.pem
+*.crx
+
+# --- Dependencies ---
+# Even if you aren't using them now, this keeps you safe if you add build tools later
+node_modules/
+package-lock.json
+dist/
+build/
+
+# --- Environment & Secrets ---
+.env
+.env.local
